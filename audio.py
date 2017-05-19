@@ -32,3 +32,6 @@ def speak_card(card):
 	speak("of")
 	speak(card_suit[card[1]])
 
+def play_song():
+	os.system('mpg123 -n 1 RHODES-HUMORME.mp3 | aplay') 
+	
