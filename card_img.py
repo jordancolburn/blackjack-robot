@@ -125,7 +125,7 @@ def setup():
 
 def get_cards(num_cards):
   frame = {}
-  for x in range(1,30):
+  for x in range(1,10):
     ret, frame = cam.read()
   cv2.imwrite("capture.jpg", frame)
   
