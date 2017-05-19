@@ -7,6 +7,7 @@ import time
 from socket import *
 from time import ctime          # Import necessary modules   
 import distance
+import audio
 
 ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'read cpu_temp', 'home', 'distance', 'x+', 'x-', 'y+', 'y-', 'xy_home']
 
@@ -35,6 +36,8 @@ motor.setSpeed(speed)
 
 movement_time = 2
 
+audio.speak("Hello, My Name is Chip")
+
 while True:
 
 	cur_distance = distance.distance()
@@ -43,8 +46,7 @@ while True:
 
 	if cur_distance < 30:
 		motor.backward()
-	
-
+		
 	#print "stop"
 	#motor.ctrl(0)
 	time.sleep(movement_time)
