@@ -91,6 +91,9 @@ def getCards(im, numcards=4, isTrain = True):
     transform = cv2.getPerspectiveTransform(approx,h)
     warp = cv2.warpPerspective(im,transform,(450,450))
     
+    if not isTrain:
+      cv2.imwrite("capture.jpg", warp)
+
     idx = idx + 1
 
     yield warp
