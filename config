@@ -1,0 +1,7 @@
+offset_x = -110
+offset_y = 140
+offset = -90
+forward0 = True
+forward1 = True
+backward0 = False
+forward0 = False 
