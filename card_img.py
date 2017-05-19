@@ -92,7 +92,7 @@ def getCards(im, numcards=4, isTrain = True):
     warp = cv2.warpPerspective(im,transform,(450,450))
     
     if not isTrain:
-      cv2.imwrite("capture.jpg", warp)
+      cv2.imwrite("capture_processed.jpg", warp)
 
     idx = idx + 1
 
@@ -122,7 +122,11 @@ def setup():
   global cam cv2.VideoCapture(0)
 
 def get_cards(num_cards):
-  ret, frame = cam.read()
+  frame = {}
+  for x in range(1,30):
+    ret, frame = cam.read()
+  cv2.imwrite("capture.jpg", frame)
+  
 
   try:
     #frame = cv2.transpose(frame)
