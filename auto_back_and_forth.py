@@ -8,6 +8,7 @@ from socket import *
 from time import ctime          # Import necessary modules   
 import distance
 import audio
+import card_img
 
 ctrl_cmd = ['forward', 'backward', 'left', 'right', 'stop', 'read cpu_temp', 'home', 'distance', 'x+', 'x-', 'y+', 'y-', 'xy_home']
 
@@ -29,6 +30,7 @@ motor.setup(busnum=busnum)     # Initialize the Raspberry Pi GPIO connected to t
 video_dir.home_x_y()
 car_dir.home()
 distance.setup()
+card_img.setup()
 
 speed = 50;
 
@@ -38,18 +40,31 @@ movement_time = 2
 
 audio.speak("Hello, My Name is Chip")
 
+
 while True:
-
-	cur_distance = distance.distance()
-	if cur_distance > 70:
+	while distance.distance() > 35:
 		motor.forward()
+		time.sleep(.05)
 
-	if cur_distance < 30:
+	print "stop"
+	motor.ctrl(0)
+	audio.speak("analyzing your cards.")
+	time.sleep(2)
+	cards = card_img.get_cards(1)
+	if cards:	
+		audio.speak(cards[0][0] + ' of ' + cards[0][1])
+	print cards
+	continue
+
+	while distance.distance() < 88:
 		motor.backward()
+		time.sleep(.05)
+
+	print "stop"
+	motor.ctrl(0)
+	audio.speak("analyzing your cards.")
+	time.sleep(2)
 		
-	#print "stop"
-	#motor.ctrl(0)
-	time.sleep(movement_time)
 
 
 

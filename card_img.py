@@ -115,8 +115,10 @@ def get_training(training_labels_filename,training_image_filename,num_training_c
   return training  
 
 def setup():
-  global training = get_training('chip_train_1.tsv','chip_train_1.jpg',52)
-  global cam cv2.VideoCapture(0)
+  global training
+  training = get_training('chip_train_1.tsv','chip_train_1.jpg',52)
+  global cam
+  cam = cv2.VideoCapture(0)
 
 def get_cards(num_cards):
   ret, frame = cam.read()
